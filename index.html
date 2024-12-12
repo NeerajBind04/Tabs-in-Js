@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabs Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .tabstop{
+        width: 80%;
+        margin:10% auto;
+    }
+    .tabs {
+      display: flex;
+      cursor: pointer;
+    }
+    .tab {
+      padding: 10px 20px;
+      background-color: #cc88fa;
+      /* border: 1px solid #ccc; */
+      border-bottom: none;
+    }
+    .tab.active {
+      background-color: rgb(127, 248, 197);
+      font-weight: bold;
+    }
+    .tab-content {
+      border: 1px solid #ccc;
+      padding: 20px;
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="tabstop">
+    <div class="tabs">
+        <div class="tab active" data-tab="tab1">Tab 1</div>
+        <div class="tab" data-tab="tab2">Tab 2</div>
+        <div class="tab" data-tab="tab3">Tab 3</div>
+      </div>
+      <div id="tab1" class="tab-content active">
+        <p>This is content for Tab 1.</p>
+      </div>
+      <div id="tab2" class="tab-content">
+        <p>This is content for Tab 2.</p>
+      </div>
+      <div id="tab3" class="tab-content">
+        <p>This is content for Tab 3.</p>
+      </div>
+  </div>
+  <script src="script.js"></script>
+  <script>
+    
+const tabs = document.querySelectorAll('.tab');
+const tabContents = document.querySelectorAll('.tab-content');
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    tabContents.forEach(content => content.classList.remove('active'));
+
+    tab.classList.add('active');
+    const targetTabContent = document.getElementById(tab.dataset.tab);
+    targetTabContent.classList.add('active');
+  });
+});
+
+  </script>
+</body>
+</html>
